@@ -1,0 +1,250 @@
+============================================================
+  CIRAS - CRIME INVESTIGATION & ANALYSIS SYSTEM
+  VIDEO DEMO SCRIPT (~7 minutes)
+============================================================
+
+
+SCENE 1 - INTRODUCTION (30 sec)
+--------------------------------
+[Show: Title slide or code editor]
+
+"Hey everyone. Today I'm going to walk you through CIRAS - 
+the Crime Investigation and Analysis System. It's a full-stack 
+web application I built for managing crime data, tracking 
+evidence, and running AI-powered analysis - designed with 
+Kerala Police use cases in mind."
+
+"The tech stack is React on the frontend, Node.js with Express 
+on the backend, and a real SQLite database storing all the data. 
+Let me show you how it works."
+
+
+SCENE 2 - PROJECT STRUCTURE (45 sec)
+--------------------------------------
+[Show: VS Code file explorer]
+
+"The project is split into two main folders - frontend and backend."
+
+"The backend has server.js - our Express REST API - and 
+db/database.js which handles the SQLite database. The actual 
+database file is ciras.db - you can open this with any SQLite 
+browser and see all 7 tables."
+
+"The frontend is a React app built with Vite. It communicates 
+with the backend via fetch API calls. The frontend's database.js 
+is a wrapper that translates every data operation into API requests."
+
+"Let me start both servers and show you the app."
+
+
+SCENE 3 - STARTING THE APP (30 sec)
+--------------------------------------
+[Show: Two terminals side by side]
+
+"I'll open two terminals. In the first one, I start the backend..."
+
+  > cd backend
+  > node server.js
+
+"...and you can see it initializes the SQLite database, seeds it 
+with Kerala crime data, and starts listening on port 3001."
+
+"In the second terminal, I start the frontend..."
+
+  > cd frontend
+  > npm run dev
+
+"...and Vite spins up on port 5173. Let's open that in the browser."
+
+
+SCENE 4 - LOGIN PAGE (30 sec)
+-------------------------------
+[Show: Browser at http://localhost:5173]
+
+"The system starts with an authentication screen - it uses 
+Kerala Police branding with a badge-based login system."
+
+"I'll enter the Badge ID - KL-POL-001 - and the authorization 
+code."
+
+  >> ACTION: Type KL-POL-001 and 1234, click ACCESS SYSTEM
+
+"This logs me in as CI Arun Krishnan with Admin privileges. 
+And we're into the Operations Dashboard."
+
+
+SCENE 5 - DASHBOARD (1 min)
+-----------------------------
+[Show: Dashboard]
+
+"The dashboard gives a bird's-eye view of all crime operations."
+
+"At the top we have four stat cards - Total FIRs, Active Cases, 
+Critical/High severity alerts, and High-Risk suspects."
+
+"Below that we have secondary stats - Evidence Pending, 
+Resolution Rate, Total Evidence pieces, and Officers Assigned."
+
+"And then interactive charts - an Incidents by Crime Type bar 
+chart showing Robbery as the most common, a Case Status 
+doughnut chart, a Monthly FIR Trend line chart, a Severity 
+Breakdown, and a Crime Method Radar."
+
+"Down here is the Recent Incident Log showing the latest FIRs 
+with their severity indicators."
+
+
+SCENE 6 - FIR MANAGEMENT (1 min)
+-----------------------------------
+[Show: Click "FIR Management" in sidebar]
+
+"Moving to FIR Management - this is where First Information 
+Reports are tracked."
+
+"Each FIR is displayed as a card showing the crime type, 
+location, severity badge, and date. You can search by keyword 
+and filter by severity or status."
+
+  >> ACTION: Click on a FIR card
+
+"Clicking on any FIR opens its full details - the complainant 
+info, officer assigned, description, and you can see the status 
+is tracked with color-coded badges."
+
+  >> ACTION: Click "Register New FIR"
+
+"As an admin, I can register new FIRs - the form captures date, 
+time, location, crime type, severity, and description. All of 
+this is validated and saved to the SQLite database."
+
+
+SCENE 7 - CRIMINAL RECORDS (1 min)
+-------------------------------------
+[Show: Click "Criminal Records" in sidebar]
+
+"The Criminal Records module manages suspect profiles."
+
+"Each card shows an avatar, risk level - High, Medium, or Low - 
+their aliases, demographics, and crime type tags like Robbery, 
+Assault, Cybercrime."
+
+"You can filter by risk level and status - Wanted, Active, 
+Under Surveillance."
+
+  >> ACTION: Click on "Vijayan Kutty" card
+
+"Clicking opens a detailed Criminal Profile - showing the full 
+name, age, known address, status badge, risk level, prior 
+convictions, crime history as styled tags, and investigator notes."
+
+"This is pulling directly from the SQLite database - the 
+criminals table."
+
+
+SCENE 8 - EVIDENCE TRACKING (1 min)
+--------------------------------------
+[Show: Click "Evidence Tracking" in sidebar]
+
+"The Evidence Tracking module is crucial for maintaining chain 
+of custody - which is legally required."
+
+"Evidence items are grouped by case number. Each card shows the 
+evidence type - Physical or Digital - the status, description, 
+who collected it, and the chain of custody trail."
+
+"For example, this crowbar evidence was collected by SI Manoj 
+Pillai, transferred to the Evidence Room, and then sent to 
+Dr. Sreelakshmi Menon at the Forensic Lab."
+
+  >> ACTION: Click "View Audit Logs"
+
+"We also have a full Audit Trail - every create, update, and 
+delete action is logged with timestamps and user details. 
+This ensures accountability."
+
+
+SCENE 9 - AI ANALYSIS (1 min)
+--------------------------------
+[Show: Click "AI Analysis" in sidebar]
+
+"And finally - the AI Analysis module. This is the intelligence 
+layer. It has five analysis tabs:"
+
+"Similar Crimes - Select any FIR and the system finds matching 
+cases based on crime type, location proximity, method, and timing."
+
+"Suspect Recommendation - Given a FIR, the AI engine scores all 
+known criminals and ranks them by likelihood of involvement."
+
+"Crime Hotspots - Identifies geographic areas with the highest 
+crime concentration."
+
+"Case Priority - Uses a scoring algorithm to prioritize which 
+cases need attention first, based on severity, evidence 
+availability, and suspect risk."
+
+"Criminal Network - Maps relationships between criminals based 
+on shared cases and associates."
+
+"All of this runs on the backend through the AI engine - it's 
+rule-based analysis, not a black-box model, so every 
+recommendation is explainable."
+
+
+SCENE 10 - DATABASE (30 sec)
+-------------------------------
+[Show: Open DB Browser for SQLite with ciras.db]
+
+"Behind the scenes, everything is stored in a real SQLite 
+database. Here's ciras.db opened in DB Browser."
+
+"We have 7 tables - officers, firs, cases, criminals, evidence, 
+audit_logs, and crime_patterns - all with proper indexes, 
+foreign keys, and constraints."
+
+"The backend uses better-sqlite3 for performant, synchronous 
+database access."
+
+
+SCENE 11 - THEME TOGGLE (20 sec)
+-----------------------------------
+[Show: Back in the app]
+
+"Quick bonus - the app supports dark and light modes."
+
+  >> ACTION: Click "Light Mode" in sidebar
+
+"Switching to light mode - everything adapts instantly using 
+CSS custom properties. The entire color system is driven by 
+CSS variables."
+
+
+SCENE 12 - CLOSING (30 sec)
+------------------------------
+[Show: Dashboard view]
+
+"So that's CIRAS - a complete crime investigation system with:
+  - Full CRUD operations on FIRs, Cases, Criminals, and Evidence
+  - A real SQLite database with proper schema design
+  - AI-powered analysis for investigations
+  - Role-based access control
+  - Full audit logging
+  - And a professional dark/light themed UI"
+
+"Thanks for watching! If you have any questions, drop them 
+in the comments."
+
+
+============================================================
+  PRE-RECORDING CHECKLIST
+============================================================
+
+[ ] Both servers running (backend on 3001, frontend on 5173)
+[ ] Browser open at http://localhost:5173/
+[ ] DB Browser for SQLite ready with ciras.db open
+[ ] VS Code open showing project structure
+[ ] Screen recording software running
+[ ] Login: Badge ID = KL-POL-001, Password = 1234
+[ ] Close unnecessary browser tabs and notifications
+
+============================================================
